@@ -1,0 +1,44 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    {% comment %}
+    <p>
+        {{ data }}
+    </p>
+    {% endcomment %}
+    
+    <br>
+    <h1>List of Undone Task IDs with Titles</h1>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in data %}
+                <tr>
+                    <th scope="row">{{ task.id }}</th>
+                    <td>{{ task.title }}</td>
+                    <td>
+                        {% if task.status == "DONE" %}
+                            <button type="button" class="btn btn-primary">{{ task.status }}</button>
+                        {% elif task.status == "UNDO" %}
+                            <button type="button" class="btn btn-danger">{{ task.status }}</button>
+                        {% else %}
+                            <button type="button" class="btn btn-warning">{{ task.status }}</button>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

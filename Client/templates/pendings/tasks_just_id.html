@@ -1,0 +1,25 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <br>
+    <h1>List of Task IDs</h1>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in data %}
+                <tr>
+                    <th scope="row">{{ task.id }}</th>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

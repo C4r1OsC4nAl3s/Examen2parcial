@@ -1,0 +1,29 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <br>
+    <h1>List of Tasks by ID and Title</h1>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in data %}
+                <tr>
+                    <th scope="row">{{ task.id }}</th>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

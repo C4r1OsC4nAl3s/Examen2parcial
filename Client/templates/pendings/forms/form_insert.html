@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<div class="container">
+    <br>
+    <h1>INSERT</h1>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    
+        <button style="margin: 2%;" type="submit" class="btn btn-primary form-control">Send</button>
+        <br>
+        <a href="{% url 'pendings:task_list' %}" class="btn btn-warning form-control">Cancel</a>
+    </form>
+    {% if request.session.api_response %}
+        <h2>Response from API:</h2>
+        <p>{{ request.session.api_response }}</p>
+        {% if request.session.api_response.error %}
+            <p>Error: {{ request.session.api_response.error }}</p>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock content %}

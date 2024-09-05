@@ -1,0 +1,58 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    {% comment %}
+    <p>
+        {{ data }}
+    </p>
+    {% endcomment %}
+    
+    <br>
+    <br>
+    <a type="button" class="btn btn-success" href="{% url 'pendings:crud_insert' %}">INSERT</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">UserID</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in data %}
+                <tr>
+                    <th scope="row">{{ task.id }}</th>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.created_at }}</td>
+                    <td>{{ task.due_date }}</td>
+                    <td>
+                        {% if task.status == "DONE" %}
+                            <button type="button" class="btn btn-info">{{ task.status }}</button>
+                        {% elif task.status == "UNDO" %}
+                            <button type="button" class="btn btn-danger">{{ task.status }}</button>
+                        {% else %}
+                            <button type="button" class="btn btn-warning">{{ task.status }}</button>
+                        {% endif %}
+                    </td>
+                    <td>{{ task.userID }}</td>
+                    <td> 
+                        <a type="button" class="btn btn-primary" href="{% url 'pendings:crud_update' task.id %}">UPDATE</a>
+                        <a type="button" class="btn btn-secondary" href="{% url 'pendings:crud_delete' task.id %}">DELETE</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
+t
